@@ -1,48 +1,48 @@
 # GitHub Markdown Helper
 
-GitHubのissueやPRのコメント欄に、便利なMarkdownスニペットボタンを追加するChrome拡張機能
+A Chrome extension that adds convenient Markdown snippet buttons to GitHub's comment toolbar.
 
 ![markdown-helper](https://github.com/user-attachments/assets/bff33ae9-1400-411a-9830-e08604994e63)
 
+## Features
 
-## 機能
+Adds the following buttons to the comment toolbar:
 
-コメントツールバーに以下のボタンを追加します:
+- 📋 **Details/Summary**: Insert collapsible block
+- 📊 **Table**: Insert Markdown table
+- 💡 **Note**: Insert GitHub Flavored Markdown note block
+- ⚠️ **Warning**: Insert GitHub Flavored Markdown warning block
 
-- 📋 **Details/Summary**: 折りたたみ可能なブロックを挿入
-- 📊 **Table**: マークダウンテーブルを挿入
-- 💡 **Note**: GitHub Flavored Markdownのノートブロックを挿入
-- ⚠️ **Warning**: GitHub Flavored Markdownの警告ブロックを挿入
+## Installation
 
-## インストール方法
+### Install as Developer Mode
 
-### 開発版としてインストール
+1. Clone or download this repository
+2. Open `chrome://extensions/` in Chrome
+3. Enable "Developer mode" in the top right
+4. Click "Load unpacked"
+5. Select this directory
 
-1. このリポジトリをクローンまたはダウンロード
-2. Chromeで `chrome://extensions/` を開く
-3. 右上の「デベロッパーモード」をON
-4. 「パッケージ化されていない拡張機能を読み込む」をクリック
-5. このディレクトリを選択
-
-## 対応サイト
+## Supported Sites
 
 - GitHub.com
-- GitHub Enterprise Server (検証済み: v3.19.1)
-- その他のGitHub Enterpriseインスタンス
+- GitHub Enterprise Server (Verified: v3.19.1)
+- Other GitHub Enterprise instances
 
-## 使い方
+## Usage
 
-1. GitHubのissueまたはPRページを開く
-2. コメント欄をクリックすると、ツールバーにボタンが表示される
-3. 挿入したいスニペットのボタンをクリック
-4. テンプレートが挿入されるので、内容を編集
+1. Open a GitHub issue or PR page
+2. Click on the comment field to display the toolbar with buttons
+3. Click the button for the snippet you want to insert
+4. Edit the inserted template content
 
-## 技術スタック
+## Tech Stack
 
 - Vanilla JavaScript
 - Chrome Extension Manifest V3
 - CSS3
 
-## ライセンス
+## License
 
 MIT
+
