@@ -1,0 +1,98 @@
+.markdown-helper-toolbar {
+  display: inline-flex !important;
+  gap: 2px;
+  margin-left: 4px;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  flex-wrap: nowrap;
+  align-items: center;
+  border-left: 1px solid #d0d7de;
+  padding-left: 8px;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+/* action-barのitemContainer内に配置された場合のスタイル */
+[data-target="action-bar.itemContainer"] .markdown-helper-toolbar {
+  display: inline-flex !important;
+}
+
+/* action-bar直下に配置された場合のスタイル */
+action-bar > .markdown-helper-toolbar {
+  display: inline-flex !important;
+  margin-left: 8px;
+}
+
+/* action-bar自体のoverflow設定を上書き */
+.ActionBar.overflow-visible {
+  overflow: visible !important;
+}
+
+/* markdown-toolbar直下に配置された場合 */
+markdown-toolbar > .markdown-helper-toolbar {
+  display: inline-flex !important;
+  margin-left: 8px;
+}
+
+.markdown-helper-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background-color: transparent;
+  transition: background-color 0.2s;
+  width: 28px;
+  height: 28px;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.markdown-helper-btn:hover {
+  background-color: #f3f4f6;
+  color: #24292f;
+}
+
+.markdown-helper-btn:active {
+  background-color: #e9ecef;
+  color: #1f2328;
+}
+
+/* ダークモード対応 */
+@media (prefers-color-scheme: dark) {
+  .markdown-helper-toolbar {
+    border-left-color: #30363d;
+  }
+
+  .markdown-helper-btn {
+    background-color: transparent;
+    color: #7d8590;
+  }
+
+  .markdown-helper-btn:hover {
+    background-color: #30363d;
+    color: #c9d1d9;
+  }
+
+  .markdown-helper-btn:active {
+    background-color: #282e36;
+    color: #e6edf3;
+  }
+}
+
+/* GitHubのツールバー内に配置された場合のスタイル調整 */
+.toolbar-commenting .markdown-helper-toolbar {
+  display: inline-flex;
+  margin: 0;
+  padding-left: 8px;
+}

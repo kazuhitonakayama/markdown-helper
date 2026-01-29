@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "GitHub Markdown Helper",
+  "version": "1.0.0",
+  "description": "GitHubのコメント欄にMarkdownスニペットボタンを追加",
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ]
+}
