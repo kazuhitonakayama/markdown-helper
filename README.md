@@ -2,7 +2,8 @@
 
 GitHubのissueやPRのコメント欄に、便利なMarkdownスニペットボタンを追加するChrome拡張機能
 
-<img width="800" alt="markdown-helper-demo" src="https://github.com/user-attachments/assets/..." />
+![markdown-helper](https://github.com/user-attachments/assets/bff33ae9-1400-411a-9830-e08604994e63)
+
 
 ## 機能
 
