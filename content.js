@@ -1,7 +1,7 @@
 // GitHubのtextareaを監視してボタンを追加
 function addMarkdownButtons() {
   // GitHubのツールバー（H, B, I などのボタンがある場所）を探す
-  const toolbars = document.querySelectorAll('markdown-toolbar, .toolbar-commenting');
+  const toolbars = document.querySelectorAll('[role="toolbar"][aria-label="Formatting tools"]');
 
   toolbars.forEach(toolbar => {
     // 既にボタンが追加されているかチェック
@@ -9,35 +9,25 @@ function addMarkdownButtons() {
     toolbar.dataset.markdownHelperAdded = 'true';
 
     // 対応するtextareaを探す
-    let textarea = null;
-
-    // markdown-toolbar要素の場合
-    if (toolbar.tagName === 'MARKDOWN-TOOLBAR') {
-      const forAttr = toolbar.getAttribute('for');
-      if (forAttr) {
-        textarea = document.getElementById(forAttr);
-      }
-    }
-
-    // それ以外の場合は周辺から探す
-    if (!textarea) {
-      const container = toolbar.closest('.comment-form-textarea, .timeline-comment, form');
-      textarea = container?.querySelector('textarea');
-    }
+    const container = toolbar.closest('form, [class*="comment"]');
+    const textarea = container?.querySelector('textarea');
 
     if (!textarea) return;
 
     // ボタンコンテナを作成
     const buttonContainer = createButtonContainer(textarea);
 
-    // action-barを探して追加
-    const actionBar = toolbar.querySelector('action-bar');
+    // 最後のグループの後ろに追加
+    const lastGroup = toolbar.querySelector('.Toolbar-module__group--dOhAD:last-of-type');
 
-    if (actionBar) {
-      // action-barに直接追加
-      actionBar.appendChild(buttonContainer);
-    } else if (toolbar) {
-      // フォールバック: markdown-toolbarに直接追加
+    if (lastGroup) {
+      // 最後のグループの後に新しいグループとして追加
+      const newGroup = document.createElement('div');
+      newGroup.className = 'Toolbar-module__group--dOhAD';
+      newGroup.appendChild(buttonContainer);
+      lastGroup.after(newGroup);
+    } else {
+      // フォールバック: ツールバーに直接追加
       toolbar.appendChild(buttonContainer);
     }
   });
@@ -46,12 +36,10 @@ function addMarkdownButtons() {
 // ボタンコンテナを作成
 function createButtonContainer(textarea) {
   const container = document.createElement('div');
-  container.className = 'markdown-helper-toolbar ActionBar-item';
-  // ActionBar-itemのスタイルを適用
-  container.setAttribute('data-targets', 'action-bar.items');
-  container.setAttribute('data-view-component', 'true');
+  container.className = 'markdown-helper-toolbar';
   container.style.display = 'inline-flex';
-  container.style.visibility = 'visible';
+  container.style.gap = '2px';
+  container.style.alignItems = 'center';
 
   const buttons = [
     {
@@ -79,9 +67,15 @@ function createButtonContainer(textarea) {
   buttons.forEach(btn => {
     const button = document.createElement('button');
     button.type = 'button';
-    button.className = 'markdown-helper-btn Button Button--iconOnly Button--invisible Button--medium';
+    button.className = 'markdown-helper-btn prc-Button-ButtonBase-9n-Xk ToolbarButton-module__iconButton--o0jFl prc-Button-IconButton-fyge7';
+    button.setAttribute('data-component', 'IconButton');
+    button.setAttribute('data-loading', 'false');
+    button.setAttribute('data-no-visuals', 'true');
+    button.setAttribute('data-size', 'medium');
+    button.setAttribute('data-variant', 'invisible');
     button.textContent = btn.label;
     button.title = btn.title;
+    button.tabIndex = -1;
     button.addEventListener('click', (e) => {
       e.preventDefault();
       insertSnippet(textarea, btn.snippet);
